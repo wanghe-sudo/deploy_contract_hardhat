@@ -24,11 +24,10 @@ describe("Token", function () {
             it("正确发送token", async () => {
                 await token.transfer(addr1.address, 100)
                 console.log("owner的地址是：" + owner.address)
-                const balance_owner = token.balanceOf(owner.address)
-                console.log("owner的余额是: " + JSON.parse(balance_owner))
-                const balance_addr1 = token.balanceOf(addr1.address)
-                // console.log("addr1的余额是100？ "+balance_addr1 == 100);
-                // expect(balance_addr1).to.equal(100)
+                const balance_owner = await token.balanceOf(owner.address)
+                console.log("owner的余额是: " + ethers.BigNumber.from(balance_owner).toString())
+                const balance_addr1 = await token.balanceOf(addr1.address)
+                console.log("addr1的余额是 " + ethers.BigNumber.from(balance_addr1).toString());
             })
         }
     )
